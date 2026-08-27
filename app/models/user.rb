@@ -108,6 +108,10 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  def pinned_micropost
+    microposts.find_by(pin: true)
+  end
+
   private
 
     # メールアドレスをすべて小文字にする
