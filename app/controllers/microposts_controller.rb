@@ -24,6 +24,21 @@ class MicropostsController < ApplicationController
     end
   end
 
+  def pined
+    @micropost = Micropost.find(params[:id])
+
+    Micropost.transaction do
+      if current_user.pinned_micropost
+        if @micropost != current_user.pinned_micropost
+          current_user.pinned_micropost.update(pin: false) 
+        end
+      end
+      @micropost.update!(pin: true)
+    end
+    
+    redirect_to root_url
+  end
+
   private
 
     def micropost_params

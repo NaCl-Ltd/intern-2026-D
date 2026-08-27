@@ -10,7 +10,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+      fix = @user.microposts
+      @pined = fix.find_by(pin: true)
+      if(@pined)
+        @microposts = @user.microposts.where.not(id: @pined.id).paginate(page: params[:page])
+      else
+        @microposts = @user.microposts.paginate(page: params[:page])
+      end
   end
 
   def new
@@ -63,8 +69,6 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      Rails.logger.debug "[DEBUG] --------------"
-      Rails.logger.debug "[DEBUG] params: #{params}"
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation,
                                    :introduction)
