@@ -3,6 +3,9 @@
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
+
+  <%= f.select :category, [["？質問", "question"], ["📕日記", "diary"],  ["！お知らせ", "notice"]], include_blank: "属性を選択" %>
+
   <%= f.submit "Post", class: "btn btn-primary" %>
   <span class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
