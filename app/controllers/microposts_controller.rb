@@ -28,12 +28,13 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.find(params[:id])
 
     Micropost.transaction do
+      current_pin = current_user.pinned_micropost&.id
       if current_user.pinned_micropost
-        if @micropost != current_user.pinned_micropost
           current_user.pinned_micropost.update(pin: false) 
-        end
       end
-      @micropost.update!(pin: true)
+      if @micropost.id != current_pin
+        @micropost.update!(pin: true)
+      end
     end
     
     redirect_to root_url
