@@ -6,7 +6,11 @@ class StaticPagesController < ApplicationController
       @feed_items = current_user.feed
 
       if params[:category].present?
-        @feed_items = @feed_items.where(category: params[:category])
+        if params[:category] == "none"
+          @feed_items = @feed_items.where(category: nil)
+        else
+          @feed_items = @feed_items.where(category: params[:category])
+        end
       end
 
       @pined = @feed_items.find_by(pin: true)
