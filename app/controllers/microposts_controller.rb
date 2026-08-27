@@ -32,10 +32,10 @@ class MicropostsController < ApplicationController
         if @micropost != current_user.pinned_micropost
           current_user.pinned_micropost.update(pin: false) 
         end
-
       end
       @micropost.update!(pin: true)
     end
+    
     redirect_to root_url
   end
 
