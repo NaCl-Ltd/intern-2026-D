@@ -28,11 +28,11 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.find(params[:id])
 
     Micropost.transaction do
-      current_pin = current_user.pinned_micropost&.id
+      current_pin_id = current_user.pinned_micropost&.id
       if current_user.pinned_micropost
           current_user.pinned_micropost.update(pin: false) 
       end
-      if @micropost.id != current_pin
+      if @micropost.id != current_pin_id
         @micropost.update!(pin: true)
       end
     end
