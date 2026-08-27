@@ -25,7 +25,6 @@ class MicropostsController < ApplicationController
   end
 
   def pined
-    #現在のユーザーのすべてのピンを外して固定の一件をつける
     @micropost = Micropost.find(params[:id])
 
     Micropost.transaction do
@@ -43,7 +42,6 @@ class MicropostsController < ApplicationController
   private
 
     def micropost_params
-      #Rails.logger.debug "[DEBUG] params: #{params}"
       params.require(:micropost).permit(:content, :image)
     end
 
