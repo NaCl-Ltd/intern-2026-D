@@ -46,6 +46,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_27_024808) do
     t.string "category"
     t.text "content"
     t.datetime "created_at", null: false
+    t.boolean "pin", default: false, null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
