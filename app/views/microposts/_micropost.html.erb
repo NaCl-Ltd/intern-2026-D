@@ -1,6 +1,9 @@
 <li id="micropost-<%= micropost.id %>">
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+    <span class="category">
+    属性：<%= {"question" => "質問❔", "diary" => "日記📕", "notice" => "お知らせ❕"}[micropost.category] || "未選択" %>
+    </span>
   <span class="content">
     <%= micropost.content %>
     <% if micropost.image.attached? %>
