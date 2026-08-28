@@ -1,7 +1,7 @@
 <li id="micropost-<%= micropost.id %>">
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
-  <% id_collect = micropost.id == micropost.user.pinned_micropost&.id %>
-    <% if id_collect %>
+  <% is_id_collect = micropost.id == micropost.user.pinned_micropost&.id %>
+    <% if is_id_collect %>
       <%= micropost.user.name %>が固定中のマイクロポスト
       <br/>
     <% end %> 
@@ -9,7 +9,7 @@
     <span class="category">
     属性：<%= {"question" => "質問❔", "diary" => "日記📕", "notice" => "お知らせ❕"}[micropost.category] || "未選択" %>
     </span>
-  <span class="content"> 
+  <span class="content">
     <%= micropost.content %>
     <% if micropost.image.attached? %>
       <%= image_tag micropost.image.variant(:display) %>
@@ -20,7 +20,7 @@
     <% if current_user?(micropost.user) %>
       <%= link_to "delete", micropost, data: { "turbo-method": :delete,
                                                turbo_confirm: "You sure?" } %>
-      <% if id_collect %>   
+      <% if is_id_collect %>   
         <% pinned_message = "固定を外す"%>                                    
       <% else %>
         <% pinned_message = "固定する" %> 
