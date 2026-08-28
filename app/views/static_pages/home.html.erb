@@ -16,7 +16,7 @@
       <h3>Micropost Feed</h3>
 
   <%= form_with url: root_path, method: :get, local: true do %>
-    <%= select_tag :category,  options_for_select([  ["？質問", "question"],  ["📕日記", "diary"],  ["！お知らせ", "notice"] ,["未選択", "none"] ]),  include_blank: "すべて" %>
+    <%= select_tag :category,  options_for_select([  ["質問❓", "question"],  ["日記📕", "diary"],  ["お知らせ❕", "notice"] ,["未選択", "none"] ]),  include_blank: "すべて" %>
     <%= submit_tag "検索" %>
   <% end %>
 
