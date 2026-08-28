@@ -21,9 +21,9 @@
       <%= link_to "delete", micropost, data: { "turbo-method": :delete,
                                                turbo_confirm: "You sure?" } %>
       <% if is_id_collect %>   
-        <% pinned_message = "固定を外す"%>                                    
+        <% pinned_message = "固定を外す"%>
       <% else %>
-        <% pinned_message = "固定する" %> 
+        <% pinned_message = "固定する" %>
       <% end%>
       <%= link_to pinned_message, pined_micropost_path(id: micropost.id), data: { "turbo-method": :post}%>
     <% end %>
